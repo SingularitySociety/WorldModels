@@ -1,0 +1,28 @@
+{
+  "name": "WorldModels",
+  "version": "0.0.1",
+  "main": "src/index.ts",
+  "repository": "git@github.com:SingularitySociety/WorldModels.git",
+  "license": "MIT",
+  "scripts": {
+    "test": "tsx src/index.ts",
+    "eslint": "eslint src --fix",
+    "format": "prettier --write '{src,tests}/**/*.ts'"
+  },
+  "dependencies": {
+    "@graphai/llm_agents": "^0.0.18",
+    "dotenv": "^16.4.5",
+    "graphai": "^0.5.8"
+  },
+  "devDependencies": {
+    "@graphai/vanilla": "^0.0.8",
+    "@types/node": "^22.5.4",
+    "eslint": "^9.10.0",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.4.0"
+  }
+}
