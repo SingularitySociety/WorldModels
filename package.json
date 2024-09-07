@@ -7,7 +7,7 @@
   "scripts": {
     "test": "tsx src/index.ts",
     "eslint": "eslint src --fix",
-    "updateDoc": "cat README_BASE.md Questions.yaml > README.md",
+    "updateDoc": "cat README_BASE.md Questions.yaml README_FOOTER.md > README.md",
     "format": "prettier --write '{src,tests}/**/*.ts'"
   },
   "dependencies": {
