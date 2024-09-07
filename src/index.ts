@@ -36,7 +36,7 @@ const getGraphData = (llmAgentName: string, params: any = {}) => {
 };
 
 const main = async () => {
-  const graphData = getGraphData("openAIAgent");
+  const graphData = getGraphData("openAIAgent", {});
   // const graphData = getGraphData("groqAgent", { model: "llama3-8b-8192" });
 
   const graph = new GraphAI(graphData, { ...llm_agents, ...vanilla_agents });
@@ -50,9 +50,6 @@ const main = async () => {
     console.log("");
   });
 
-  //result.map.ai.map((result) => {
-  // console.log(JSON.stringify(result.choices[0].message.content));
-  // });
 };
 
 main();
