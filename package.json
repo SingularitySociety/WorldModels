@@ -12,7 +12,8 @@
   "dependencies": {
     "@graphai/llm_agents": "^0.0.18",
     "dotenv": "^16.4.5",
-    "graphai": "^0.5.8"
+    "graphai": "^0.5.8",
+    "yaml": "^2.5.1"
   },
   "devDependencies": {
     "@graphai/vanilla": "^0.0.8",
