@@ -42,18 +42,17 @@ const main = async () => {
   const graph = new GraphAI(graphData, { ...llm_agents, ...vanilla_agents });
   const result = await graph.run();
 
-
   Array.from(questions.keys()).map((key) => {
-    console.log("Question: ")
-    console.log(questions[key])
-    console.log("Answer: ")
+    console.log("Question: ");
+    console.log(questions[key]);
+    console.log("Answer: ");
     console.log(result.map.ai[key].choices[0].message.content);
-    console.log("")
-  })
-  
+    console.log("");
+  });
+
   //result.map.ai.map((result) => {
   // console.log(JSON.stringify(result.choices[0].message.content));
-// });
+  // });
 };
 
 main();
