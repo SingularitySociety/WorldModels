@@ -6,7 +6,7 @@ import * as vanilla_agents from "@graphai/vanilla";
 
 import { readYamlFile } from "./utils";
 
-const questions = readYamlFile(__dirname + "/../questions.yaml");
+const questions = readYamlFile(__dirname + "/../Questions.yaml");
 
 const getGraphData = (llmAgentName: string, params: any = {}) => {
   const graphData = {
