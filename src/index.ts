@@ -4,6 +4,7 @@ import { GraphAI } from "graphai";
 import * as llm_agents from "@graphai/llm_agents";
 import * as vanilla_agents from "@graphai/vanilla";
 
+import fs from "fs";
 import { readYamlFile } from "./utils";
 
 type LLMAgentData = { agent: string; params: Record<string, any> };
@@ -29,6 +30,7 @@ const getGraphData = (llms: LLMAgentData[]) => {
             map2: {
               agent: "mapAgent",
               inputs: { rows: ":questions", model: ":row" },
+              params: { resultAll: true },
               isResult: true,
               graph: {
                 nodes: {
@@ -60,6 +62,24 @@ const getGraphData = (llms: LLMAgentData[]) => {
                   },
                 },
               },
+            },
+            writeFile: {
+              agent: (responses) => {
+                const logs = responses.res.map((response) => {
+                  return [
+                    "Question: ",
+                    response.row,
+                    "Answer: ",
+                    response.run.ai.choices[0].message.content,
+                    "",
+                  ].join("\n");
+                });
+                const fileName =
+                  __dirname + "/../results/" + responses.model.agent + ".md";
+
+                fs.writeFileSync(fileName, logs.join("\n\n"));
+              },
+              inputs: { res: ":map2", model: ":row" },
             },
           },
         },
