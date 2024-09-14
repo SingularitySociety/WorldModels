@@ -8,27 +8,59 @@ import { readYamlFile } from "./utils";
 
 const questions = readYamlFile(__dirname + "/../Questions.yaml");
 
-const getGraphData = (llmAgentName: string, params: any = {}) => {
+const getGraphData = (llms: { agent: string; params: Record<string, any> }[]) => {
   const graphData = {
     version: 0.5,
     nodes: {
-      inputs: {
-        value: questions,
+      models: {
+        value: llms,
       },
       map: {
         agent: "mapAgent",
+        inputs: { rows: ":models" },
+        isResult: true,
         graph: {
           nodes: {
-            ai: {
-              agent: llmAgentName,
+            questions: {
+              value: questions,
+            },
+            map2: {
+              agent: "mapAgent",
+              inputs: { rows: ":questions", model: ":row" },
               isResult: true,
-              params,
-              inputs: { prompt: ":row" },
+              graph: {
+                nodes: {
+                  graphData: {
+                    agent: "stringTemplateAgent",
+                    inputs: {
+                      agent: ":model.agent",
+                      row: ":row",
+                      params: ":model.params",
+                    },
+                    params: {
+                      template: {
+                        version: 0.5,
+                        nodes: {
+                          ai: {
+                            agent: "${agent}",
+                            isResult: true,
+                            params: "${params}",
+                            inputs: { prompt: "${row}" },
+                          },
+                        },
+                      },
+                    },
+                  },
+                  run: {
+                    agent: "nestedAgent",
+                    graph: ":graphData",
+                    isResult: true,
+                  },
+                },
+              },
             },
           },
         },
-        inputs: { rows: ":inputs" },
-        isResult: true,
       },
     },
   };
@@ -36,20 +68,28 @@ const getGraphData = (llmAgentName: string, params: any = {}) => {
 };
 
 const main = async () => {
-  const graphData = getGraphData("openAIAgent", {});
-  // const graphData = getGraphData("groqAgent", { model: "llama3-8b-8192" });
+  const llms = [
+    { agent: "openAIAgent", params: {} },
+    // {agent: "groqAgent", params: { model: "llama3-8b-8192" }}
+  ];
+  const graphData = getGraphData(llms);
 
   const graph = new GraphAI(graphData, { ...llm_agents, ...vanilla_agents });
   const result = await graph.run();
+  // console.log(JSON.stringify(result));
 
-  Array.from(questions.keys()).map((key) => {
-    console.log("Question: ");
-    console.log(questions[key]);
-    console.log("Answer: ");
-    console.log(result.map.ai[key].choices[0].message.content);
-    console.log("");
+  Array.from(llms.keys()).map((llmKey) => {
+    const llm = llms[llmKey];
+    console.log("## " + llm.agent);
+    Array.from(questions.keys()).map((key) => {
+      const llmResponses = result.map[llmKey].map2[key].run.ai;
+      console.log("Question: ");
+      console.log(questions[key]);
+      console.log("Answer: ");
+      console.log(llmResponses.choices[0].message.content);
+      console.log("");
+    });
   });
-
 };
 
 main();

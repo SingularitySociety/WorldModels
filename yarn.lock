@@ -201,6 +201,11 @@
   resolved "https://registry.yarnpkg.com/@google/generative-ai/-/generative-ai-0.11.5.tgz#b031c9508061bc8650a6470ef7d77122c083d70a"
   integrity sha512-DviMgrnljEKh6qkDT2pVFW+NEuVhggqBUoEnyy2PNL7l4ewxXRJubk3PctC9yPl1AdRIlhqP7E076QQt+IWuTg==
 
+"@graphai/agent_utils@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@graphai/agent_utils/-/agent_utils-0.0.2.tgz#c04f9bcbb07a78710e63362ec84008b7153adab4"
+  integrity sha512-pAB45O/YQ/vQQoIRNtlgWGTVNn1f1DrpzRj7WzdsAtTOim7gkr6Mjp5QR9Ue+U/xVdgNRDRws6qLm1CYin/VWw==
+
 "@graphai/anthropic_agent@^0.0.4":
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/@graphai/anthropic_agent/-/anthropic_agent-0.0.4.tgz#b9e70ff6dca13625e609d8fd1623e108cbd5aee6"
@@ -267,10 +272,12 @@
   dependencies:
     slashgpt "^0.1.4"
 
-"@graphai/vanilla@^0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@graphai/vanilla/-/vanilla-0.0.8.tgz#4817b2ab833370e0007de5a99b899a6e63d25185"
-  integrity sha512-5dDbPQj8sEkxdojbWLC64YbWmrZVYUwFMm1ghrACJ0+cpaZ0KdhP3hGZnnPMXxfZI4Ju3nYJyY+AmbmMNG3aog==
+"@graphai/vanilla@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@graphai/vanilla/-/vanilla-0.0.14.tgz#524e1d307726b6addce1963b70ad529666698768"
+  integrity sha512-c/rvY3opbTx2kB4fr16iVPasYLRjDItq8ioTWLS5lNweYeUAvvRMxbUFN/kmCWhxBAeV0vQyGeqMVs8prfPSfw==
+  dependencies:
+    "@graphai/agent_utils" "0.0.2"
 
 "@graphql-typed-document-node/core@^3.2.0":
   version "3.2.0"
