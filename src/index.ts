@@ -98,6 +98,19 @@ const main = async () => {
   if (process.env["GROQ_API_KEY"]) {
     llms.push({ agent: "groqAgent", params: { model: "llama3-8b-8192" } });
   }
+  if (process.env["GOOGLE_GENAI_API_KEY"]) {
+    llms.push({ agent: "geminiAgent", params: {} });
+  }
+  if (process.env["REPLICATE_API_TOKEN"]) {
+    llms.push({
+      agent: "replicateAgent",
+      params: { model: "meta/meta-llama-3-70b-instruct" },
+    });
+  }
+  if (process.env["ANTHROPIC_API_KEY"]) {
+    llms.push({ agent: "anthropicAgent", params: {} });
+  }
+
   if (llms.length === 0) {
     console.log(".envファイルを追加して、API_KEYを登録してください");
     return;
