@@ -6,9 +6,11 @@ import * as vanilla_agents from "@graphai/vanilla";
 
 import { readYamlFile } from "./utils";
 
+type LLMAgentData = { agent: string; params: Record<string, any> };
+
 const questions = readYamlFile(__dirname + "/../Questions.yaml");
 
-const getGraphData = (llms: { agent: string; params: Record<string, any> }[]) => {
+const getGraphData = (llms: LLMAgentData[]) => {
   const graphData = {
     version: 0.5,
     nodes: {
@@ -68,10 +70,19 @@ const getGraphData = (llms: { agent: string; params: Record<string, any> }[]) =>
 };
 
 const main = async () => {
-  const llms = [
-    { agent: "openAIAgent", params: {} },
-    // {agent: "groqAgent", params: { model: "llama3-8b-8192" }}
-  ];
+  const llms: LLMAgentData[] = [];
+
+  if (process.env["OPENAI_API_KEY"]) {
+    llms.push({ agent: "openAIAgent", params: {} });
+  }
+  if (process.env["GROQ_API_KEY"]) {
+    llms.push({ agent: "groqAgent", params: { model: "llama3-8b-8192" } });
+  }
+  if (llms.length === 0) {
+    console.log(".envファイルを追加して、API_KEYを登録してください");
+    return;
+  }
+
   const graphData = getGraphData(llms);
 
   const graph = new GraphAI(graphData, { ...llm_agents, ...vanilla_agents });
