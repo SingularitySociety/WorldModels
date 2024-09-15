@@ -67,11 +67,12 @@ const getGraphData = (llms: LLMAgentData[]) => {
               agent: (responses) => {
                 const logs = responses.res.map((response) => {
                   return [
-                    "Question: ",
+                    "### Question: ",
                     response.row,
-                    "Answer: ",
+                    "### Answer: ",
                     response.run.ai.choices[0].message.content,
                     "",
+                    "---",
                   ].join("\n");
                 });
                 const fileName =
@@ -108,7 +109,7 @@ const main = async () => {
     });
   }
   if (process.env["ANTHROPIC_API_KEY"]) {
-    llms.push({ agent: "anthropicAgent", params: {} });
+    llms.push({ agent: "anthropicAgent", params: {model: "claude-3-sonnet-20240229"} });
   }
 
   if (llms.length === 0) {
