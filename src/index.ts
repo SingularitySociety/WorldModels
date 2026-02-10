@@ -97,7 +97,7 @@ const main = async () => {
     llms.push({ agent: "openAIAgent", params: {} });
   }
   if (process.env["GROQ_API_KEY"]) {
-    llms.push({ agent: "groqAgent", params: { model: "llama3-8b-8192" } });
+    llms.push({ agent: "groqAgent", params: { model: "llama-3.1-8b-instant" } });
   }
   if (process.env["GOOGLE_GENAI_API_KEY"]) {
     llms.push({ agent: "geminiAgent", params: {} });
