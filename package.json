@@ -17,9 +17,11 @@
     "yaml": "^2.8.2"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@graphai/vanilla": "^0.0.14",
-    "@types/node": "^22.5.4",
-    "eslint": "^9.10.0",
+    "@types/node": "^25.2.3",
+    "eslint": "^10.0.0",
+    "globals": "^17.3.0",
     "prettier": "^3.8.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
