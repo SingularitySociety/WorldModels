@@ -11,14 +11,14 @@
     "format": "prettier --write '{src,tests}/**/*.ts'"
   },
   "dependencies": {
-    "@graphai/llm_agents": "^0.0.18",
+    "@graphai/llm_agents": "^2.0.14",
     "dotenv": "^16.4.5",
-    "graphai": "^0.5.8",
+    "graphai": "^2.0.16",
     "yaml": "^2.8.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@graphai/vanilla": "^0.0.14",
+    "@graphai/vanilla": "^2.0.12",
     "@types/node": "^25.2.3",
     "eslint": "^10.0.0",
     "globals": "^17.3.0",
