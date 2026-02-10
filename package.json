@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "test": "tsx src/index.ts",
-    "eslint": "eslint src --fix",
+    "lint": "eslint src --fix",
     "updateDoc": "cat README_BASE.md Questions.yaml README_FOOTER.md > README.md",
     "format": "prettier --write '{src,tests}/**/*.ts'"
   },
@@ -14,17 +14,17 @@
     "@graphai/llm_agents": "^0.0.18",
     "dotenv": "^16.4.5",
     "graphai": "^0.5.8",
-    "yaml": "^2.5.1"
+    "yaml": "^2.8.2"
   },
   "devDependencies": {
     "@graphai/vanilla": "^0.0.14",
     "@types/node": "^22.5.4",
     "eslint": "^9.10.0",
-    "prettier": "^3.3.3",
+    "prettier": "^3.8.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "tsx": "^4.19.0",
-    "typescript": "^5.5.4",
-    "typescript-eslint": "^8.4.0"
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.55.0"
   }
 }
